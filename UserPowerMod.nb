@@ -1,0 +1,161 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5188,        151]
+NotebookOptionsPosition[      4944,        138]
+NotebookOutlinePosition[      5289,        153]
+CellTagsIndexPosition[      5246,        150]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"pmod", "::", "basenonpos"}], "=", 
+   "\"\<`1` is not a positive integer.\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pmod", "::", "expnonpos"}], "=", 
+   "\"\<`1` is not a positive integer.\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"pmod", "::", "modnonpos"}], "=", 
+    "\"\<`1` is not a positive integer.\>\""}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"pmod", "[", 
+    RowBox[{"a_Integer", ",", " ", "b_Integer", ",", " ", "mod_Integer"}], 
+    "]"}], "/;", 
+   RowBox[{"Which", " ", "[", 
+    RowBox[{
+     RowBox[{"a", "\[LessEqual]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"Message", "[", 
+       RowBox[{
+        RowBox[{"pmod", "::", "basenonpos"}], ",", "a"}], "]"}], ";", 
+      "False"}], ",", 
+     RowBox[{"b", "\[LessEqual]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"Message", "[", 
+       RowBox[{"pmod", "::", "expnonpos"}], "]"}], ";", "False"}], ",", 
+     RowBox[{"mod", "\[LessEqual]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"Message", "[", 
+       RowBox[{"pmod", "::", "modnonpos"}], "]"}], ";", "False"}], ",", 
+     "True", ",", "True"}], "]"}]}], ":=", " ", "\n", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"l", ",", " ", "z", ",", " ", 
+      RowBox[{"binarylist", " ", "=", " ", 
+       RowBox[{"IntegerDigits", "[", 
+        RowBox[{"b", ",", " ", "2"}], "]"}]}], ",", " ", 
+      RowBox[{"val", " ", "=", " ", "1"}]}], "}"}], ",", "\n", "  ", 
+    RowBox[{
+     RowBox[{"l", " ", "=", " ", 
+      RowBox[{"Length", "[", "binarylist", "]"}]}], ";", "\n", "  ", 
+     RowBox[{"Clear", "[", "z", "]"}], ";", "\n", "  ", 
+     RowBox[{
+      RowBox[{"z", "[", "1", "]"}], " ", "=", " ", "a"}], ";", "\n", "  ", 
+     RowBox[{
+      RowBox[{"z", "[", "j_", "]"}], ":=", 
+      RowBox[{
+       RowBox[{"z", "[", "j", "]"}], "=", " ", 
+       RowBox[{"Mod", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"z", "[", 
+           RowBox[{"j", " ", "-", " ", "1"}], "]"}], "^", "2"}], ",", " ", 
+         "mod"}], "]"}]}]}], ";", "\n", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"l", "\[GreaterEqual]", "1024"}], ",", 
+       RowBox[{"Do", "[", 
+        RowBox[{
+         RowBox[{"z", "[", "k", "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"k", ",", "1000", ",", "l"}], "}"}]}], "]"}], ",", 
+       RowBox[{"z", "[", "l", "]"}]}], "]"}], ";", "\n", "  ", 
+     RowBox[{"Do", "[", "\n", "   \t", 
+      RowBox[{
+       RowBox[{"If", "[", "\n", "      \t", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"binarylist", "[", 
+           RowBox[{"[", "j", "]"}], "]"}], " ", "==", " ", "1"}], ",", "\n", 
+         "           ", 
+         RowBox[{
+          RowBox[{"val", " ", "*=", " ", 
+           RowBox[{"z", "[", 
+            RowBox[{"l", "-", "j", "+", "1"}], "]"}]}], ";", " ", 
+          RowBox[{"val", " ", "=", " ", 
+           RowBox[{"Mod", "[", 
+            RowBox[{"val", ",", " ", "mod"}], "]"}]}]}]}], "]"}], ",", "\n", 
+       "  ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "1", ",", " ", "l"}], "}"}]}], "]"}], ";", " ", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{"l", "-", "j", "+", "1"}], ",", " ", 
+       RowBox[{
+        RowBox[{"because", " ", "we", " ", "want", " ", "when", " ", "j"}], 
+        "=", "1"}], ",", " ", 
+       RowBox[{
+        RowBox[{"if", " ", 
+         RowBox[{"binarylist", "[", 
+          RowBox[{"[", "j", "]"}], "]"}]}], "=", "1"}], ",", " ", 
+       RowBox[{"val", "*=", 
+        RowBox[{"z", "[", "j", "]"}]}], ",", " ", 
+       RowBox[{
+        RowBox[{"when", " ", "j"}], "=", "2"}], ",", " ", 
+       RowBox[{
+        RowBox[{"want", " ", "val"}], "*=", 
+        RowBox[{"z", "[", 
+         RowBox[{"j", "-", "1"}], "]"}]}], ",", 
+       RowBox[{
+        RowBox[{"...", " ", "j"}], "=", "l"}], ",", " ", 
+       RowBox[{"val", "*=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"z", "[", "1", "]"}], ".", " ", "\n", "    \t ", "This"}], 
+         " ", "is", " ", "a", " ", "consequence", " ", "of", " ", 
+         "mathematica", " ", "lists", " ", "starting", " ", "at", " ", 
+         "1"}]}], ",", " ", 
+       RowBox[{"not", " ", "0"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+     "val"}]}], "]"}]}]}], "Input"]
+},
+WindowSize->{838, 958},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 4382, 116, 449, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
